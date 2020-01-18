@@ -1,0 +1,17 @@
+with decayed as
+(
+  select id,
+  current_score*exp(-0.0990 *(julianday('now') - julianday(last_updated_date)) * 86400.0/(24*60*60)) as current_score
+  from articles
+)
+
+select
+    -6.63+2.56*log(current_score) as calibrated_score,
+    0.000491* (current_score) +0.599 as current_price
+FROM decayed;
+
+UPDATE articles
+SET
+  current_score=@newvote + (current_score*exp(-0.0990 *(julianday('now') - julianday(last_updated_date)) * 86400.0/(24*60*60))),
+  last_updated_date=datetime('now')
+WHERE id=@votestoryid;
