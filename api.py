@@ -1,6 +1,6 @@
+import sqlite3
 import flask
 from flask import request, jsonify
-import sqlite3
 
 from flask_cors import CORS
 
@@ -34,9 +34,47 @@ def get_article(article_id):
     conn.row_factory = dict_factory
     cur = conn.cursor()
 
-    article = cur.execute('SELECT * FROM articles where id = ?', (article_id,)).fetchone()
+    article = cur.execute('SELECT * FROM articles WHERE id = ?', (article_id,)).fetchone()
 
     return jsonify(article)
+
+
+@app.route('/article/vote', methods=['POST'])
+def article_vote():
+    article_id = request.args.get('articleId')
+    vote = request.args.get('vote')
+
+    conn = sqlite3.connect('articles.db')
+    conn.row_factory = dict_factory
+    cur = conn.cursor()
+
+    if vote == 'UP':
+        sql = 'UPDATE articles set number_upvotes = number_upvotes + 1 WHERE id = ?'
+    else:
+        sql = 'UPDATE articles set number_downvotes = number_downvotes + 1 WHERE id = ?'
+
+    cur.execute(sql, (article_id,))
+
+    conn.commit()
+    cur.close()
+
+    return jsonify('OK')
+
+
+@app.route('/article/buy', methods=['POST'])
+def article_buy():
+    article_id = request.args.get('articleId')
+
+    conn = sqlite3.connect('articles.db')
+    conn.row_factory = dict_factory
+    cur = conn.cursor()
+
+    cur.execute('UPDATE articles set number_purchased = number_purchased + 1 WHERE id = ?', (article_id,))
+
+    conn.commit()
+    cur.close()
+
+    return jsonify('OK')
 
 
 app.run(host='0.0.0.0')
