@@ -2,7 +2,10 @@ import flask
 from flask import request, jsonify
 import sqlite3
 
+from flask_cors import CORS
+
 app = flask.Flask(__name__)
+CORS(app)
 
 
 # app.config["DEBUG"] = True
