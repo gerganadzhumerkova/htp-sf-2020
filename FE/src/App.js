@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import Articles from './articles/Articles';
 import Article from './article/Article'
+import Dashboard from './dashboard/Dashboard'
 import {
   BrowserRouter as Router,
   Switch,
@@ -20,6 +21,9 @@ function App() {
           </Route>
           <Route path="/article/:id" exact component={Article}>
             <Article />
+          </Route>
+          <Route path="/dashboard" exact component={Dashboard}>
+            <Dashboard />
           </Route>
           <Route path='*' exact={true} component={Articles} />
         </Switch>
