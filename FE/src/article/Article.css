@@ -1,4 +1,74 @@
-.main-post {
-    width: 60%;
+.section {
+    width: 80%;
     margin: auto;
+}
+
+.rating-container {
+    clear: both;
+}
+
+.rating-title {
+    font-size: 16px;
+    float: left;
+    width: 50%;
+    color: gold;
+    font-weight: bold;
+}
+
+.buy-button-conteiner {
+    float: right;
+    width: 50%;
+}
+
+.buy-button {
+	background-color:#44c767;
+	border-radius:28px;
+	border:1px solid #18ab29;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:17px;
+	padding:8px 31px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+}
+.buy-button {
+    background-color:#5cbf2a;
+    float: right
+}
+.buy-button:active {
+	position:relative; 
+	top:1px;
+}
+
+
+.article-content {
+    clear: both;
+}
+
+.rating-text {
+    float: left;
+    width: 50%;
+}
+
+.rating {
+    color: gold;
+    float: left;
+    unicode-bidi: bidi-override;
+    direction: rtl;
+  }
+  .rating > span {
+    display: inline-block;
+    position: relative;
+    width: 1.1em;
+  }
+  .rating > span:hover:before,
+  .rating > span:hover ~ span:before {
+     content: "\2605";
+     position: absolute;
+  }
+
+.rating:hover {
+    cursor: pointer;
 }
