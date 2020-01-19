@@ -8,22 +8,22 @@ import {
 class ArticleBox extends React.Component {
 
     constructor(props) {
-        console.log(props);
         super(props);
-    }
-
-
-    onRead(articleId) {
     }
 
     render() {
       return (
         <div className="box">
-            <a href="https://youtu.be/s6zR2T9vn2c" className="image fit"><img src="images/pic06.jpg" alt="" /></a>
+            <a href="#" className="image fit"><img src="https://ichef.bbci.co.uk/news/1024/branded_news/129CB/production/_110553267_gettyimages-1082804516.jpg" alt="" /></a>
             <div className="inner">
+                <div className="article-rating">4.9/10</div>
                 <h3>{this.props.article.title}</h3>
                 <p>{this.props.article.description}</p>
-                <Link className="button fit" to={`/article/${this.props.article.id}`}>Read</Link>
+            </div>
+            <div className="read-btn-container">
+              <Link className="read-btn button fit" to={{
+                pathname: `/article/${this.props.article.id}`
+              }}>Read</Link>
             </div>
         </div>
       );

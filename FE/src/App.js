@@ -19,10 +19,10 @@ function App() {
           <Route exact path="/">
             <Articles />
           </Route>
-          <Route path="/article/:id" exact component={Article}>
+          <Route path="/article/:id" handler={Article}>
             <Article />
           </Route>
-          <Route path="/dashboard" exact component={Dashboard}>
+          <Route path="/dashboard" component={Dashboard}>
             <Dashboard />
           </Route>
           <Route path='*' exact={true} component={Articles} />
