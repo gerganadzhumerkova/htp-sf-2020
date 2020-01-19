@@ -12,9 +12,9 @@ create table articles
       score_from_author text,
       front_page_flag boolean,
       initial_score real,
-      number_purchased integer,
-      number_upvotes integer,
-      number_downvotes integer,
+      number_purchased integer default 0,
+      number_votes integer default 0,
+      average_voting_score real,
       current_score integer
 );
 
@@ -39,8 +39,8 @@ select
     front_page_flag,
     initial_score,
     number_purchased,
-    number_upvotes,
-    number_downvotes,
+    number_votes,
+    average_voting_score,
     -6.63+2.56*log(current_score_with_decay) as current_score,
     0.000491* (current_score_with_decay) +0.599 as current_price
 FROM decayed;
