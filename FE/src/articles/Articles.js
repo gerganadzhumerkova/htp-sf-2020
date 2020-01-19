@@ -1,6 +1,9 @@
 import React from 'react';
 import './Articles.css';
 import ArticleBox from './ArticleBox'
+import {
+  Link
+} from "react-router-dom";
 
 
 class Articles extends React.Component {
@@ -62,6 +65,7 @@ class Articles extends React.Component {
                         <p>Just a demo</p>
                     </header>
                     <a href="#main" className="more">Learn More</a>
+                    <Link className="button fit" to="/dashboard">Dashboard</Link>
                 </div>
             </section>
             <div id="main">
