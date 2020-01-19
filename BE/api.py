@@ -67,7 +67,7 @@ def article_vote():
 
         vote_weight = vote - 5 if vote > 5 else vote - 6
         sql_rating = """UPDATE articles SET
-                        current_score = ? + (current_score*exp(-100 *(julianday('now') - julianday(last_updated_date)) * 86400.0/(24*60))),
+                        current_score = ? + (current_score*exp(-50 *(julianday('now') - julianday(last_updated_date)) * 86400.0/(24*60))),
                         last_updated_date = datetime('now')
                         WHERE id=?
                      """
