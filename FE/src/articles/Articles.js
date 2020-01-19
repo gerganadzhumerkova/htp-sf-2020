@@ -18,7 +18,6 @@ class Articles extends React.Component {
 
     componentDidMount() {
         this.loadArticles().then((response) => {
-            console.log(response);
             this.setState({
                 articles: response
             });
@@ -38,7 +37,6 @@ class Articles extends React.Component {
                         <h1>Bulgaria News</h1>
                         <p>Just a demo</p>
                     </header>
-                    <a href="" className="more">Learn More</a>
                     <Link className="button fit" to="/dashboard">Dashboard</Link>
                 </div>
             </section>
