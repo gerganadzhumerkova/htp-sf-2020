@@ -21,8 +21,9 @@ class Article extends React.Component {
 
 	loadArticle(id) {
 		return Api.get("/article/" + id).then(response => {
-			response.current_score = response.current_score.toFixed(2)
-			response.current_price = response.current_price.toFixed(2)
+			response.current_score = response.current_score ? response.current_score.toFixed(2) : 1
+			response.current_price = response.current_price ? response.current_price.toFixed(2) : 1
+			response.average_voting_score = response.average_voting_score ? response.average_voting_score.toFixed(2) : 1
 			this.setState({
 				unpaidContent: response.content.substring(0, 200) + '..........',
 				article: response
@@ -39,7 +40,9 @@ class Article extends React.Component {
 	};
 	vote(voteScore) {
 
-		Api.post("/article/vote?vote=" + voteScore + "&articleId=" + this.state.id, {}).then(response => {});
+		Api.post("/article/vote?vote=" + voteScore + "&articleId=" + this.state.id, {}).then(response => {
+			this.loadArticle(this.state.id);
+		});
 	}
 
     render() {
@@ -56,21 +59,27 @@ class Article extends React.Component {
 								<h3>{this.state.article.title}</h3>
 
 								<div className="rating-conteiner">
-									<div className="rating-title">	
-										<span className="heading">User Rating</span>
-										<p>{this.state.article.current_score} average based on {this.state.article.number_votes} reviews.</p>
+									<div className="score-title">	
+										<span className="heading">Score</span>
+										<p>{this.state.article.current_score}</p>
 									</div>
+
 
 									{ !this.state.isPaid ?
 									<div className="buy-button-conteiner">
-										<a onClick={this.buyArticle} href="#" className="buy-button">Buy Now for {this.state.article.current_price}$</a>
+										<button onClick={this.buyArticle} href="#" className="buy-button">Buy Now for {this.state.article.current_price}$</button>
 									</div> : null }
+
+									<div className="rating-title">	
+										<span className="heading">User rating</span>
+										<p>{this.state.article.average_voting_score} average based on {this.state.article.number_votes} reviews.</p>
+									</div>
 
 								</div>
 
 								<div className="article-content">
 									<figure className="figure-img">
-										<img className="img-responsive" src="https://ichef.bbci.co.uk/news/1024/branded_news/129CB/production/_110553267_gettyimages-1082804516.jpg" alt=""></img>
+										<img className="img-responsive" src={this.state.article.image_url} alt=""></img>
 									</figure>
 									<p>
 										{ this.state.isPaid ? this.state.article.content : this.state.unpaidContent}
