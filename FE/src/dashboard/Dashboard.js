@@ -17,8 +17,8 @@ class Dashboard extends React.Component {
         this.deleteRemovedArticles = this.deleteRemovedArticles.bind(this);
         this.updateExistingArticles = this.updateExistingArticles.bind(this);
         this.deleteRemovedArticles = this.deleteRemovedArticles.bind(this);
-        this.updateInterval = 1000 * 1;
-        this.pricesInTimeLength = 15;
+        this.updateInterval = 1000 * 3;
+        this.pricesInTimeLength = 25;
         this.allArticles = [];
         this.chartContainerId = 'chartContainerId';
         this.chartStyling = { width: "100%", height: "500px" };
