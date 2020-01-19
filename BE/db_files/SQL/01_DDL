@@ -23,7 +23,7 @@ create view articles_with_score as
 with decayed as
 (
   select *,
-    current_score*exp(-0.0990 *(julianday('now') - julianday(last_updated_date)) * 86400.0/(24*60*60)) as current_score_with_decay
+    current_score*exp(-100 *(julianday('now') - julianday(last_updated_date)) * 86400.0/(24*60)) as current_score_with_decay
   from articles
 )
 select
