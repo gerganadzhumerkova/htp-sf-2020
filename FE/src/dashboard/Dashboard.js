@@ -85,7 +85,7 @@ class Dashboard extends React.Component {
             dataPoints: [
                 {
                     x: new Date(),
-                    y: article.current_price
+                    y: article.current_score
                 }
             ]
         });
@@ -127,7 +127,7 @@ class Dashboard extends React.Component {
                 if (latestArticles[articleIndex].id == currentArticle.articleId) {
                     currentArticle.dataPoints.push({
                         x: new Date(),
-                        y: latestArticles[articleIndex].current_price
+                        y: latestArticles[articleIndex].current_score
                     });
 
                 }
