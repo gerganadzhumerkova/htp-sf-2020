@@ -26,7 +26,7 @@ def get_all():
 
     cur = conn.cursor()
 
-    articles = cur.execute('SELECT * FROM articles_with_score').fetchall()
+    articles = cur.execute('SELECT * FROM articles_with_score where id in (39, 44,50) ').fetchall()
     conn.enable_load_extension(False)
 
     return jsonify(articles)
@@ -67,7 +67,7 @@ def article_vote():
 
         vote_weight = vote - 5 if vote > 5 else vote - 6
         sql_rating = """UPDATE articles SET
-                        current_score = ? + (current_score*exp(-0.0990 *(julianday('now') - julianday(last_updated_date)) * 86400.0/(24*60*60))),
+                        current_score = ? + (current_score*exp(-10 *(julianday('now') - julianday(last_updated_date)) * 86400.0/(24*60*60))),
                         last_updated_date = datetime('now')
                         WHERE id=?
                      """

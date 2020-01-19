@@ -15,6 +15,7 @@ create table articles
       number_purchased integer default 0,
       number_votes integer default 0,
       average_voting_score real,
+      image_url text,
       current_score integer
 );
 
@@ -47,5 +48,6 @@ select
         when log(current_score) > 10 then 10
         else log(current_score)
     END current_score,
-    0.000491* (current_score) +0.599 as current_price
+    0.000491* (current_score) +0.599 as current_price,
+    image_url
 FROM decayed;
