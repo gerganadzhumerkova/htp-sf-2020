@@ -42,12 +42,12 @@ select
     number_purchased,
     number_votes,
     average_voting_score,
-    case log(current_score)
-        when current_score < 0 then 1
-        when log(current_score) < 1 then 1
-        when log(current_score) > 10 then 10
-        else log(current_score)
+    case
+        when current_score_with_decay < 0 then 1
+        when log(current_score_with_decay) < 1 then 1
+        when log(current_score_with_decay) > 10 then 10
+        else log(current_score_with_decay)
     END current_score,
-    0.000491* (current_score) +0.599 as current_price,
+    0.000491* (current_score_with_decay) +0.599 as current_price,
     image_url
 FROM decayed;
