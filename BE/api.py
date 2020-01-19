@@ -21,9 +21,13 @@ def dict_factory(cursor, row):
 def get_all():
     conn = sqlite3.connect('articles.db')
     conn.row_factory = dict_factory
+    conn.enable_load_extension(True)
+    conn.load_extension("./db_files/libsqlitefunctions.dylib")
+
     cur = conn.cursor()
 
-    articles = cur.execute('SELECT * FROM articles').fetchall()
+    articles = cur.execute('SELECT * FROM articles_with_score').fetchall()
+    conn.enable_load_extension(False)
 
     return jsonify(articles)
 
@@ -32,9 +36,12 @@ def get_all():
 def get_article(article_id):
     conn = sqlite3.connect('articles.db')
     conn.row_factory = dict_factory
+    conn.enable_load_extension(True)
+    conn.load_extension("./db_files/libsqlitefunctions.dylib")
     cur = conn.cursor()
 
-    article = cur.execute('SELECT * FROM articles WHERE id = ?', (article_id,)).fetchone()
+    article = cur.execute('SELECT * FROM articles_with_score WHERE id = ?', (article_id,)).fetchone()
+    conn.enable_load_extension(False)
 
     return jsonify(article)
 
