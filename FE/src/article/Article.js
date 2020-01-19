@@ -88,16 +88,16 @@ class Article extends React.Component {
 										Your opinion matters. Please rate the article
 									</h4>
 									<div className="rating">
-										<span onClick={() => this.vote(1)}>☆</span>
-										<span onClick={() => this.vote(2)}>☆</span>
-										<span onClick={() => this.vote(3)}>☆</span>
-										<span onClick={() => this.vote(4)}>☆</span>
-										<span onClick={() => this.vote(5)}>☆</span>
-										<span onClick={() => this.vote(6)}>☆</span>
-										<span onClick={() => this.vote(7)}>☆</span>
-										<span onClick={() => this.vote(8)}>☆</span>
-										<span onClick={() => this.vote(9)}>☆</span>
 										<span onClick={() => this.vote(10)}>☆</span>
+										<span onClick={() => this.vote(9)}>☆</span>
+										<span onClick={() => this.vote(8)}>☆</span>
+										<span onClick={() => this.vote(7)}>☆</span>
+										<span onClick={() => this.vote(6)}>☆</span>
+										<span onClick={() => this.vote(5)}>☆</span>
+										<span onClick={() => this.vote(4)}>☆</span>
+										<span onClick={() => this.vote(3)}>☆</span>
+										<span onClick={() => this.vote(2)}>☆</span>
+										<span onClick={() => this.vote(1)}>☆</span>
 									</div>
 								</div>
 							</div>
